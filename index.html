@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codecraft Timer - Countdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="timer-container">
+            <div class="progress-ring">
+                <svg class="progress-ring-svg" viewBox="0 0 600 600">
+                    <circle class="progress-ring-circle-bg" cx="300" cy="300" r="240" stroke-width="15"/>
+                    <circle class="progress-ring-circle" cx="300" cy="300" r="240" stroke-width="15"/>
+                </svg>
+                
+                <div class="timer-display" id="timerDisplay">
+                    <div class="time-display">
+                        <span id="minutes" class="time-unit">01</span>:<span id="seconds" class="time-unit">00</span>
+                    </div>
+                    <div class="time-hint">Click to change time</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="playBtn" class="control-btn play-btn">
+                    <svg class="play-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                <button id="pauseBtn" class="control-btn pause-btn" style="display: none;">
+                    <svg class="pause-icon" viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                </button>
+                <button id="stopBtn" class="control-btn stop-btn">
+                    <svg class="stop-icon" viewBox="0 0 24 24">
+                        <path d="M6 6h12v12H6z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="sound-control">
+                <label class="sound-toggle">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">Sound</span>
+                </label>
+            </div>
+        </div>
+        
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
