@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('./assets/pine.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-ring {
+    position: relative;
+    display: inline-block;
+}
+
+.progress-ring-svg {
+    width: 600px;
+    height: 600px;
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-dasharray: 1508 1508;
+    stroke-dashoffset: 1508;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.timer-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timer-display:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.timer-display.editing {
+    transform: translate(-50%, -50%);
+}
+
+.time-display {
+    font-size: 6rem;
+    font-weight: bold;
+    color: white;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+}
+
+.time-unit {
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.time-unit:hover {
+    color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+.time-hint {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.timer-display:hover .time-hint {
+    opacity: 1;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.control-btn svg {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.stop-btn {
+    transition: all 0.3s ease, opacity 0.5s ease;
+}
+
+.stop-btn.blinking {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.sound-control {
+    margin-top: 20px;
+}
+
+.sound-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.sound-toggle input {
+    display: none;
+}
+
+.toggle-slider {
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s ease;
+}
+
+.sound-toggle input:checked + .toggle-slider {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.sound-toggle input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+.status-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    max-width: 90%;
+    text-align: center;
+}
+
+.status-message.show {
+    opacity: 1;
+}
+
+.time-input {
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.time-input:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 480px) {
+    .progress-ring-svg {
+        width: 400px;
+        height: 400px;
+    }
+    .time-display {
+        font-size: 4rem;
+    }
+    .time-unit {
+        min-width: 40px;
+    }
+    .controls {
+        gap: 15px;
+    }
+    .control-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .control-btn svg {
+        width: 40px;
+        height: 40px;
+    }
+}
